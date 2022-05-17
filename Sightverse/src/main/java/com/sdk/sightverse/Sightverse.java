@@ -23,7 +23,8 @@ public class Sightverse {
     public String url = "https://dev.sightverse.io/api/";
     public String appkey;
     public String userkey;
-    public Integer timeout = 10*1000;
+    public String apikey;
+    public Integer timeout = 20*1000;
 
     Sightverse()
     {
@@ -31,28 +32,21 @@ public class Sightverse {
         StrictMode.setThreadPolicy(policy);
     }
 
-    private JSONObject stringToJsonEncode(String data)
-    {
-        JSONObject obj = null;
-        try {
-            obj = new JSONObject(data);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return obj;
-    }
 
-    public JSONObject getCampaing()
+
+    public JSONObject getCampaing(String page)
     {
-        String urls = url+"app-campain";
+        this.apikey = this.appkey;
+        String urls = url+"app-campain?page="+page;
         String response = this.getJSON(urls,"GET",null);
         Logger.getLogger(getClass().getName()).log(Level.INFO, String.valueOf(response));
         return stringToJsonEncode(response);
     }
 
-    public JSONObject getAllUsers()
+    public JSONObject getAllUsers(String page)
     {
-        String urls = url+"app-user";
+        this.apikey = this.appkey;
+        String urls = url+"app-user?page="+page;
         String response = this.getJSON(urls,"GET",null);
         Logger.getLogger(getClass().getName()).log(Level.INFO, String.valueOf(response));
         return stringToJsonEncode(response);
@@ -60,6 +54,7 @@ public class Sightverse {
 
     public JSONObject getUser(String uuid)
     {
+        this.apikey = this.appkey;
         String urls = url+"app-user?uuid="+uuid;
         String response = this.getJSON(urls,"GET",null);
         Logger.getLogger(getClass().getName()).log(Level.INFO, String.valueOf(response));
@@ -68,15 +63,72 @@ public class Sightverse {
 
     public JSONObject createUser(JSONObject data)
     {
+        this.apikey = this.appkey;
         String urls = url+"app-user";
         String response = getJSON(urls,"POST", data);
         Logger.getLogger(getClass().getName()).log(Level.INFO, String.valueOf(response));
         return stringToJsonEncode(response);
     }
 
+    public JSONObject deleteUser(JSONObject data)
+    {
+        this.apikey = this.appkey;
+        String urls = url+"app-user";
+        String response = getJSON(urls,"DELETE", data);
+        Logger.getLogger(getClass().getName()).log(Level.INFO, String.valueOf(response));
+        return stringToJsonEncode(response);
+    }
+
     public JSONObject firstPages()
     {
+        this.apikey = this.appkey;
         String urls = url+"open-pages";
+        String response = getJSON(urls,"GET",null);
+        Logger.getLogger(getClass().getName()).log(Level.INFO, String.valueOf(response));
+        return stringToJsonEncode(response);
+    }
+
+    public JSONObject receiptAppList(String page)
+    {
+        this.apikey = this.appkey;
+        String urls = url+"receipt-list?page="+page;
+        String response = getJSON(urls,"GET",null);
+        Logger.getLogger(getClass().getName()).log(Level.INFO, String.valueOf(response));
+        return stringToJsonEncode(response);
+    }
+
+
+    public JSONObject userAllReceipt(String page)
+    {
+        this.apikey = this.userkey;
+        String urls = url+"receipt?page="+page;
+        String response = getJSON(urls,"GET",null);
+        Logger.getLogger(getClass().getName()).log(Level.INFO, String.valueOf(response));
+        return stringToJsonEncode(response);
+    }
+
+    public JSONObject deleteReceipt(JSONObject data)
+    {
+        this.apikey = this.userkey;
+        String urls = url+"receipt";
+        String response = getJSON(urls,"DELETE",data);
+        Logger.getLogger(getClass().getName()).log(Level.INFO, String.valueOf(response));
+        return stringToJsonEncode(response);
+    }
+
+    public JSONObject userMe()
+    {
+        this.apikey = this.userkey;
+        String urls = url+"user-me";
+        String response = getJSON(urls,"GET",null);
+        Logger.getLogger(getClass().getName()).log(Level.INFO, String.valueOf(response));
+        return stringToJsonEncode(response);
+    }
+
+    public JSONObject userEarning()
+    {
+        this.apikey = this.userkey;
+        String urls = url+"user-earning";
         String response = getJSON(urls,"GET",null);
         Logger.getLogger(getClass().getName()).log(Level.INFO, String.valueOf(response));
         return stringToJsonEncode(response);
@@ -90,7 +142,7 @@ public class Sightverse {
             URL u = new URL(url);
             c = (HttpURLConnection) u.openConnection();
             c.setRequestMethod(method);
-            c.setRequestProperty("Authorization", "Api-Key "+this.appkey);
+            c.setRequestProperty("Authorization", "Api-Key "+this.apikey);
             c.setRequestProperty("Content-Type", "application/json; utf-8");
             c.setRequestProperty("Accept", "application/json");
             c.setUseCaches(false);
@@ -141,7 +193,14 @@ public class Sightverse {
         return null;
     }
 
-    private void setPostRequestContent(HttpURLConnection c, JSONObject data) {
-
+    private JSONObject stringToJsonEncode(String data)
+    {
+        JSONObject obj = null;
+        try {
+            obj = new JSONObject(data);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return obj;
     }
 }

@@ -14,11 +14,11 @@ class MainActivity : AppCompatActivity() {
         sdk.userkey = "ooHdvekT.l7vk4VWoNvbHEI70ko4McXV1Q4YNgB8H";
 
         //Application tüm kampanyaları listele
-        var campaings: JSONObject? = sdk.getCampaing();
+        var campaings: JSONObject? = sdk.getCampaing("0");
         System.out.println(campaings);
 
         //Application tüm kullanıcıları listele
-        var users: JSONObject? = sdk.getAllUsers();
+        var users: JSONObject? = sdk.getAllUsers("0");
         System.out.println(users);
 
         //Yeni kullanıcı gönderme
@@ -31,14 +31,41 @@ class MainActivity : AppCompatActivity() {
         var response: JSONObject? = sdk.createUser(data);
         System.out.println(response);
 
+
+        //Delete User
+        val data_delete = JSONObject()
+        data.put("id", "1")
+        var delete: JSONObject? = sdk.deleteUser(data_delete);
+        System.out.println(delete);
+
         //Get User
         var apiuser: JSONObject? = sdk.getUser("1234567890");
         System.out.println(apiuser);
 
-        //App First Pages
+        //App Open Pages
         var pages: JSONObject? = sdk.firstPages();
         System.out.println(pages);
 
+        //App get all Receipt
+        var receipts: JSONObject? = sdk.receiptAppList("0");
+        System.out.println(receipts);
 
+        //All user Receipt
+        var user_receipts: JSONObject? = sdk.userAllReceipt("0");
+        System.out.println(user_receipts);
+
+        //Delete receipt
+        val receipt_delete = JSONObject()
+        data.put("id", "1")
+        var delete_receipt: JSONObject? = sdk.deleteReceipt(receipt_delete);
+        System.out.println(delete_receipt);
+
+        //User
+        var userme: JSONObject? = sdk.userMe();
+        System.out.println(userme);
+
+        //User earning
+        var earning: JSONObject? = sdk.userEarning();
+        System.out.println(earning);
     }
 }
