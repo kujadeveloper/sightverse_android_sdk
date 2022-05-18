@@ -1,6 +1,7 @@
 package com.sdk.sightverse;
 
 
+import android.graphics.Bitmap;
 import android.os.StrictMode;
 
 import org.json.JSONException;
@@ -134,9 +135,19 @@ public class Sightverse {
         return stringToJsonEncode(response);
     }
 
-    public String getJSON(String url, String method, JSONObject data)
+    public JSONObject sendScreenShot(Bitmap image)
+    {
+        this.apikey = this.userkey;
+        String urls = url+"receipt";
+        String response = uploadFile(urls,"POST",null,image);
+        Logger.getLogger(getClass().getName()).log(Level.INFO, String.valueOf(response));
+        return stringToJsonEncode(response);
+    }
+
+    private String getJSON(String url, String method, JSONObject data)
     {
         Logger.getLogger(getClass().getName()).log(Level.INFO, url);
+        Logger.getLogger(getClass().getName()).log(Level.INFO, method);
         HttpURLConnection c = null;
         try {
             URL u = new URL(url);
@@ -152,6 +163,7 @@ public class Sightverse {
 
             if(data!=null)
             {
+                Logger.getLogger(getClass().getName()).log(Level.INFO, data.toString());
                 c.setDoInput(true);
                 c.setDoOutput(true);
                 DataOutputStream localDataOutputStream = new DataOutputStream(c.getOutputStream());
@@ -160,6 +172,7 @@ public class Sightverse {
                 localDataOutputStream.close();
             }
             c.connect();
+
             int status = c.getResponseCode();
             Logger.getLogger(getClass().getName()).log(Level.INFO, String.valueOf(status));
             switch (status) {
@@ -173,10 +186,82 @@ public class Sightverse {
                     }
                     br.close();
                     return sb.toString();
-                case 400:
-                    return "{'message':'error'}";
+                default:
+                    BufferedReader br1 = new BufferedReader(new InputStreamReader(c.getErrorStream()));
+                    StringBuilder sb1 = new StringBuilder();
+                    String line1;
+                    while ((line1 = br1.readLine()) != null) {
+                        sb1.append(line1+"\n");
+                    }
+                    br1.close();
+                    return sb1.toString();
             }
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (c != null) {
+                try {
+                    c.disconnect();
+                } catch (Exception ex) {
+                    Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return null;
+    }
 
+
+    private String uploadFile(String url, String method, JSONObject data, Bitmap image)
+    {
+        String boundary =  "*****";
+
+        Logger.getLogger(getClass().getName()).log(Level.INFO, url);
+        Logger.getLogger(getClass().getName()).log(Level.INFO, method);
+        HttpURLConnection c = null;
+        try {
+            URL u = new URL(url);
+            c = (HttpURLConnection) u.openConnection();
+            c.setRequestMethod(method);
+            c.setRequestProperty("Authorization", "Api-Key "+this.apikey);
+            c.setRequestProperty(
+                    "Content-Type", "multipart/form-data;boundary=" + boundary);
+            c.setRequestProperty("Accept", "application/json");
+            c.setRequestProperty("Connection", "Keep-Alive");
+            c.setRequestProperty("Cache-Control", "no-cache");
+            c.setRequestProperty("file", "ups.jpg");
+            c.setUseCaches(false);
+            c.setDoOutput(true);
+
+            OutputStream output = c.getOutputStream();
+            image.compress(Bitmap.CompressFormat.JPEG, 100, output);
+
+            c.connect();
+
+            int status = c.getResponseCode();
+            Logger.getLogger(getClass().getName()).log(Level.INFO, String.valueOf(status));
+            switch (status) {
+                case 200:
+                case 201:
+                    BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream()));
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        sb.append(line+"\n");
+                    }
+                    br.close();
+                    return sb.toString();
+                default:
+                    BufferedReader br1 = new BufferedReader(new InputStreamReader(c.getErrorStream()));
+                    StringBuilder sb1 = new StringBuilder();
+                    String line1;
+                    while ((line1 = br1.readLine()) != null) {
+                        sb1.append(line1+"\n");
+                    }
+                    br1.close();
+                    return sb1.toString();
+            }
         } catch (MalformedURLException ex) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
