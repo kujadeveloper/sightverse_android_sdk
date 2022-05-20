@@ -3,6 +3,10 @@
 Android sdk<br>
 https://jitpack.io/#kujadeveloper/sightverse_android_sdk
 
+
+# Notes
+	Your apikey security quick tip https://www.youtube.com/watch?v=X8lYNW_Or2o
+
 # Installations
     
 Step 1. Add the JitPack repository to your build file <br />
