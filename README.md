@@ -44,3 +44,9 @@ Call first open slide page<br>
 </pre>
 
 # function list
+	<pre>firstPages();</pre>
+		<b>Open slide page</b><br>
+		Opening pages defined to your application<br>
+	
+	
+
