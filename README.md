@@ -1,6 +1,7 @@
 # sightverse
 
-Android sdk
+Android sdk<br>
+https://jitpack.io/#kujadeveloper/sightverse_android_sdk
 
 # Installations
     
@@ -35,9 +36,11 @@ Define application api key<br>
 	<code>
 		sdk.appkey = "your application api key";
 	</code>
-<br>
+<br><br>
 Call first apen slide page<br>
 <pre>
         var pages: JSONObject? = sdk.firstPages();
         System.out.println(pages);
 </pre>
+
+# function list
