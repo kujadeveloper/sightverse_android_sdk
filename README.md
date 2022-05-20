@@ -42,15 +42,3 @@ Call first open slide page<br>
         var pages: JSONObject? = sdk.firstPages();
         System.out.println(pages);
 	</pre>
-
-	
-	<ul>
-		<li>
-			firstPages();<br>
-			<b>Open slide page</b><br>
-			Opening pages defined to your application
-		</li>
-	</ul>
-	
-	
-
