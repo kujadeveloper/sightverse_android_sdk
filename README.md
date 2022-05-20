@@ -48,3 +48,8 @@ Call first open slide page<br>
 	</pre>
 
 # Function List
+
+Call the sdk<br>
+	<code>
+		var sdk = Sightverse();
+	</code>
