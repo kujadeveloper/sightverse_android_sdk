@@ -84,5 +84,33 @@ Call the sdk<br>
 		</pre>
 		Deletes the user defined in the system
 	</li>
+	<li>
+		<pre>
+		var apiuser: JSONObject? = sdk.getUser("1234567890");
+       		System.out.println(apiuser);
+		</pre>
+		uuid lists the called user
+	</li>
+	<li>
+		<pre>
+		var apiuser: JSONObject? = sdk.getUser("1234567890");
+       		System.out.println(apiuser);
+		</pre>
+		uuid lists the called user
+	</li>
+	<li>
+		<pre>
+			var receipts: JSONObject? = sdk.receiptAppList("1");
+        		System.out.println(receipts);
+		</pre>
+		Lists all receipts sent to the application
+	</li>
+	<li>
+		<pre>
+			 var user_receipts: JSONObject? = sdk.userAllReceipt("1");
+       			 System.out.println(user_receipts);
+		</pre>
+		Lists all receipts sent by the user
+	</li>
 </ul>
 
