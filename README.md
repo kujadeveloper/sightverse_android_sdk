@@ -56,23 +56,23 @@ Call the sdk<br>
 
 <ul>
 	<li>
-		<code>sdk.getCampaing("1");</code>
+		<code>sdk.getCampaing("1");</code><br>
 		Lists the campaigns defined for the application.
 		The page parameter counts the paging control.
 	</li>
 	<li>
-		<code>sdk.getAllUsers("1");</code>
+		<code>sdk.getAllUsers("1");</code><br>
 		Lists the users defined for the application.
 		The page parameter counts the paging control.
 	</li>
 	<li>
-		<code>	val data = JSONObject()
-			data.put("name", "Test")
-			data.put("lastname", "Test")
-			data.put("phone", "05555555555")
-			data.put("email", "test@test.com")
-			data.put("uuid", "1234567890")
-			var response: JSONObject? = sdk.createUser(data);</code>
+		<code>	val data = JSONObject()<br>
+			data.put("name", "Test")<br>
+			data.put("lastname", "Test")<br>
+			data.put("phone", "05555555555")<br>
+			data.put("email", "test@test.com")<br>
+			data.put("uuid", "1234567890")<br>
+			var response: JSONObject? = sdk.createUser(data);</code><br>
 		It defines the user for the application.
 	</li>
 </ul>
