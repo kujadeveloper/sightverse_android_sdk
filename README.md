@@ -112,5 +112,42 @@ Call the sdk<br>
 		</pre>
 		Lists all receipts sent by the user
 	</li>
+	<li>
+		<pre>
+			 val receipt_delete = JSONObject()
+			receipt_delete.put("id", "1")
+			var delete_receipt: JSONObject? = sdk.deleteReceipt(receipt_delete);
+			System.out.println(delete_receipt);
+		</pre>
+		Deletes a sent receipt
+	</li>
+	<li>
+		<pre>
+			 var userme: JSONObject? = sdk.userMe();
+        		System.out.println(userme);
+		</pre>
+		Api key returns defined user information
+	</li>
+	<li>
+		<pre>
+			var earning: JSONObject? = sdk.userEarning();
+        		System.out.println(earning);
+		</pre>
+		Returns user gain with api key defined
+	</li>
+	<li>
+		<pre>
+			var earning: JSONObject? = sdk.userEarning();
+        		System.out.println(earning);
+		</pre>
+		Returns user gain with api key defined
+	</li>
+	<li>
+		<pre>
+			var earning: JSONObject? = sdk.sendScreenShot(imageBitmap);
+		    System.out.println(earning);
+		</pre>
+		Sends the given bitmap voucher for the api key defined user
+	</li>
 </ul>
 
