@@ -60,13 +60,11 @@ Call the sdk<br>
 		Lists the campaigns defined for the application.
 		The page parameter counts the paging control.
 	</li>
-	
 	<li>
 		<code>sdk.getAllUsers("1");</code>
 		Lists the users defined for the application.
 		The page parameter counts the paging control.
 	</li>
-	
 	<li>
 		<code>	val data = JSONObject()
 			data.put("name", "Test")
