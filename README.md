@@ -35,7 +35,7 @@ Define application api key<br>
 	<code>
 		sdk.appkey = "your application api key";
 	</code>
-Call first apen slide page
+Call first apen slide page<br>
 <code>
 	//App Open Pages
         var pages: JSONObject? = sdk.firstPages();
