@@ -53,3 +53,8 @@ Call the sdk<br>
 	<code>
 		var sdk = Sightverse();
 	</code>
+
+<ul><li></li></ul>
+	<code>sdk.getCampaing("1");</code>
+Lists the campaigns defined for the application.
+The page parameter counts the paging control.
