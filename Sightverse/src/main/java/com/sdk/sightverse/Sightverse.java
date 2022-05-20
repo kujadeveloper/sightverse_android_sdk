@@ -27,7 +27,7 @@ public class Sightverse {
     public String apikey;
     public Integer timeout = 20*1000;
 
-    Sightverse()
+    public static void Sightverse()
     {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
