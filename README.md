@@ -16,9 +16,22 @@ Add it in your root build.gradle at the end of repositories:<br />
 	}
 </pre>
 
-
+Step 2. Add the dependency<br>
 <pre>
 	dependencies {
 	        implementation 'com.github.kujadeveloper:sightverse_android_sdk:Tag'
 	}
 </pre>
+
+
+# How to use
+
+Call the sdk<br>
+	<code>
+		var sdk = Sightverse();
+	</code>
+	
+Define application api key<br>
+	<code>
+		sdk.appkey = "your application api key";
+	</code>
