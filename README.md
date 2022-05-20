@@ -38,10 +38,10 @@ Define application api key<br>
 	</code>
 <br><br>
 Call first open slide page<br>
-<pre>
+	<pre>
         var pages: JSONObject? = sdk.firstPages();
         System.out.println(pages);
-</pre>
+	</pre>
 
 	
 	<ul>
