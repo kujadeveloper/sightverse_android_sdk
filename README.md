@@ -75,5 +75,14 @@ Call the sdk<br>
 			var response: JSONObject? = sdk.createUser(data);</pre><br>
 		It defines the user for the application.
 	</li>
+	<li>
+		<pre>
+		 val data_delete = JSONObject()
+		data_delete.put("id", "1")
+		var delete: JSONObject? = sdk.deleteUser(data_delete);
+		System.out.println(delete);
+		</pre>
+		Deletes the user defined in the system
+	</li>
 </ul>
 
