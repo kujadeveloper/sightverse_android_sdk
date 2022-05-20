@@ -42,3 +42,5 @@ Call first open slide page<br>
         var pages: JSONObject? = sdk.firstPages();
         System.out.println(pages);
 	</pre>
+
+# Function List
